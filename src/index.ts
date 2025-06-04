@@ -22,8 +22,9 @@ const server = http.createServer(app);
 // Create Socket.IO server
 const io = new Server(server, {
   cors: {
-    origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+    origin: '*',  // Allow connections from any origin for now
     methods: ['GET', 'POST'],
+    credentials: true
   },
 });
 
@@ -43,7 +44,7 @@ connectDB();
 // Middleware
 app.use(express.json());
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: '*',  // Allow connections from any origin for now
   credentials: true,
 }));
 
